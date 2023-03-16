@@ -11,6 +11,9 @@ resource logicApp 'Microsoft.Logic/workflows@2019-05-01' = {
   tags: {
     customer: 'syneos'
   }
+  identity: {
+    type: 'SystemAssigned'
+  }
   properties: {
     state: 'Enabled'
     definition: {
@@ -95,3 +98,5 @@ resource logicApp 'Microsoft.Logic/workflows@2019-05-01' = {
     }
   }
 }
+
+output logicAppMSI string = logicApp.identity.principalId
